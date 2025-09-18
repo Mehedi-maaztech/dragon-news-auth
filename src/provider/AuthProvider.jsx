@@ -1,10 +1,9 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import auth from "../firebase/_firebase_init";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 
-
-// eslint-disable-next-line no-undef, react-refresh/only-export-components
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState('');
@@ -12,13 +11,19 @@ const AuthProvider = ({ children }) => {
     console.log('User in AuthProvider:', user," Loading State", loading);
 
     const createUser = (email, password) => {
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
     const loginUser = (email, password) => {
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }  
 
+    const updateUserProfile = (updatedData) => {
+        return updateProfile(auth.currentUser, updatedData);
+    }  
+    
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(currentUser => {
             setUser(currentUser);
@@ -31,6 +36,7 @@ const AuthProvider = ({ children }) => {
     }, []);
 
     const logout = () => {
+        setLoading(true);
         return signOut(auth);
     }
     const authInfo = {
@@ -39,7 +45,8 @@ const AuthProvider = ({ children }) => {
         createUser,
         loginUser,
         logout,
-        loading
+        updateUserProfile,
+        loading,
     };
 
     return (

@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { useContext } from "react";
 
 const Login = () => {
 
     const {loginUser, setUser} = useContext(AuthContext);
+    const navigate = useNavigate();
     const handleLoginSubmit = e => {
         e.preventDefault();
         const form = new FormData(e.target);
@@ -17,7 +18,8 @@ const Login = () => {
             setUser("Logged in user",loggedUser);
             console.log(loggedUser);
             e.target.reset();
-            window.location.href = "/";
+            //window.location.href = "/";
+            navigate("/");
         })
         .catch(error => {
             console.log(error.message);
