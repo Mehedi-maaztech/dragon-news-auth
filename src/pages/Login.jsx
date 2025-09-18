@@ -4,7 +4,7 @@ import { useContext } from "react";
 
 const Login = () => {
 
-    const {loginUser, setUser} = useContext(AuthContext);
+    const {loginUser, user, setUser} = useContext(AuthContext);
     const navigate = useNavigate();
     const handleLoginSubmit = e => {
         e.preventDefault();
@@ -15,10 +15,9 @@ const Login = () => {
         loginUser(form.get('email'), form.get('password'))
         .then(result => {
             const loggedUser = result.user;
-            setUser("Logged in user",loggedUser);
-            console.log(loggedUser);
+            setUser(loggedUser);
+            console.log(user);
             e.target.reset();
-            //window.location.href = "/";
             navigate("/");
         })
         .catch(error => {
