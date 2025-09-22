@@ -9,19 +9,20 @@ const Login = () => {
     const handleLoginSubmit = e => {
         e.preventDefault();
         const form = new FormData(e.target);
-        console.log(Object.fromEntries(form.entries()));
+        //console.log(Object.fromEntries(form.entries()));
         //e.target.reset();
         
         loginUser(form.get('email'), form.get('password'))
         .then(result => {
             const loggedUser = result.user;
             setUser(loggedUser);
-            console.log(user);
+            //console.log(user);
             e.target.reset();
             navigate("/");
         })
         .catch(error => {
-            console.log(error.message);
+            //console.log(error.message);
+            alert(error.message);
         });
     }
     

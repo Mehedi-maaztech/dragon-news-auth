@@ -15,24 +15,31 @@ const Register = () => {
         // console.log(name, photourl, email, password);
 
         const form = new FormData(e.target);
-        console.log(Object.fromEntries(form.entries()));
+        //console.log(Object.fromEntries(form.entries()));
         //e.target.reset();
         createUser(form.get('email'), form.get('password'))
         .then(result => {
             const loggedUser = result.user;
-            setUser(loggedUser);
             //console.log(loggedUser);
             //e.target.reset();
             updateUserProfile({displayName: form.get('name'), photoURL: form.get('photourl')})
-            .then(() => {
-                console.log("User profile updated");
-                e.target.reset();
-                navigate("/");
-                console.log(loggedUser);
-            })            
+                .then(() => {
+                    //console.log("User profile updated");
+                    e.target.reset();
+                    navigate("/");
+                    //console.log(loggedUser);
+                })
+                .catch(error => {
+                    alert(error.message);
+                }
+                );
+
+            setUser(loggedUser);
+            
         })
         .catch(error => {
-            console.log(error.message);
+            //console.log(error.message);
+            alert(error.message);
         });
     }
     return (
