@@ -50,7 +50,7 @@ react-dragon-news-auth/
 ---
 
 ## Setup & Installation
-1. **Clone the repository:**
+1. **Created repository:**
    ```bash
    cd react-dragon-news-auth
    ```
@@ -99,7 +99,7 @@ react-dragon-news-auth/
 ---
 
 ## News Data
-- News data is fetched from (https://openapi.programming-hero.com/api/news/category/:id).
+- News data is fetched from (https://-----------------------/api/news/category/:id).
 - Each news card displays title, image, author, date, rating, and views.
 - Detailed news view includes full article, author info, and category navigation.
 

@@ -55,7 +55,7 @@ const Register = () => {
 
                         <div><a className="link link-hover">Forgot password?</a></div>
                         <div className="text-center mt-6">
-                            <button className="btn btn-neutral btn-wide">Login</button>
+                            <button className="btn btn-neutral btn-wide">Register</button>
                         </div>
                         <p className="text-center py-5 text-gray-400">Don&apos;t have an account ? <Link to="/auth/login" className="font-bold text-red-800">Login</Link></p>
                     </form>
